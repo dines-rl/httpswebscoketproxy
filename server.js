@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 app.use("/:tunnelToken/proxy/*", (req, res, next) => {
   const { tunnelToken } = req.params;
   // Construct the target URL using the tunnelToken
-  const targetUrl = `https://${tunnelToken}.tunnel.runloop.ai/`;
+  const targetUrl = `https://${tunnelToken}.tunnel.runloop.ai`;
 
   const apiProxy = createProxyMiddleware({
     target: targetUrl,
