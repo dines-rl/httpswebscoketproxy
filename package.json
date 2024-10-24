@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "build": "next build"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3",
+    "install": "^0.13.0",
+    "next": "^15.0.1",
+    "npm": "^10.9.0",
+    "ws": "^8.18.0"
+  }
+}
