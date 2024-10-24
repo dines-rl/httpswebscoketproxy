@@ -14,7 +14,7 @@ app.use("/:tunnelToken/proxy", (req, res, next) => {
     target: targetUrl,
     changeOrigin: true,
     pathRewrite: {
-      "^/api/[^/]+/proxy/": "/",
+      "^/[^/]+/proxy/": "/",
     },
     ws: true, // Enable WebSocket proxying
     onError: (err, req, res) => {
