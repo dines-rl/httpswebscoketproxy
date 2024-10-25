@@ -12,7 +12,8 @@ function extractToken(req) {
 }
 // Create a single instance of createProxyMiddleware
 const apiProxy = createProxyMiddleware({
-  target: "https://docs.runloop.ai",
+  target:
+    "https://l7srq4mnqdnc-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
   changeOrigin: true,
   pathRewrite: {
     // Rewrite the path to remove '/:tunnelToken/proxy/' and keep everything after
@@ -42,7 +43,7 @@ app.use("/:tunnelToken/proxy/*", apiProxy);
 app.use("/", (req, res) => {
   const apiProxy = createProxyMiddleware({
     target:
-      "https://l7srq4mnqdnc-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
+      "https://zdj8yeshcf7z-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
     changeOrigin: true,
     ws: true, // Enable WebSocket proxying
     toProxy: true, // Enable the proxy to be used in a reverse proxy
