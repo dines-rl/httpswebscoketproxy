@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Apply middleware for the API path
-app.use("/:tunnelToken/proxy/*", (req, res, next) => {
+app.use("/:tunnelToken/proxy/", (req, res, next) => {
   const { tunnelToken } = req.params;
   // Construct the target URL using the tunnelToken
   const targetUrl = `https://${tunnelToken}.tunnel.runloop.ai`;
@@ -17,6 +17,7 @@ app.use("/:tunnelToken/proxy/*", (req, res, next) => {
       // Rewrite the path to remove '/:tunnelToken/proxy/' and keep everything after
       "^/api/[^/]+/proxy/(.*)$": "/$1",
     },
+    //selfHandleResponse: true, // necessary to modify the response
 
     ws: true, // Enable WebSocket proxying
     onError: (err, req, res) => {
