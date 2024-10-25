@@ -29,7 +29,7 @@ app.use("/:tunnelToken/proxy/", (req, res, next) => {
 });
 
 // This will handle HTTP GET requests to any path
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.send("This is a proxy server. Does not serve content directly.");
 });
 
