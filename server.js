@@ -12,7 +12,6 @@ function extractToken(req) {
 }
 // Create a single instance of createProxyMiddleware
 const apiProxy = createProxyMiddleware({
-  target: "https://example.com",
   changeOrigin: true,
   pathRewrite: {
     // Rewrite the path to remove '/:tunnelToken/proxy/' and keep everything after
