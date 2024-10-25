@@ -36,8 +36,8 @@ const apiProxy = createProxyMiddleware({
 });
 
 // Apply middleware for the API path
-app.use("/:tunnelToken/proxy", apiProxy);
-app.use("/:tunnelToken/proxy/*", apiProxy);
+// app.use("/:tunnelToken/proxy", apiProxy);
+//app.use("/:tunnelToken/proxy/*", apiProxy);
 const apiProxySimple = createProxyMiddleware({
   target:
     "https://zdj8yeshcf7z-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
