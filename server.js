@@ -25,6 +25,7 @@ const apiProxy = createProxyMiddleware({
 
 // Apply middleware for the API path
 app.use("/:tunnelToken/proxy/*", apiProxy);
+app.use("/:tunnelToken/proxy", apiProxy);
 
 // This will handle HTTP GET requests to any path
 app.get("/", (req, res) => {
