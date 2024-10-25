@@ -43,7 +43,7 @@ const apiProxySimple = createProxyMiddleware({
     "https://zdj8yeshcf7z-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
   changeOrigin: true,
   ws: true, // Enable WebSocket proxying
-  toProxy: true, // Enable the proxy to be used in a reverse proxy
+  //toProxy: true, // Enable the proxy to be used in a reverse proxy
   onError: (err, req, res) => {
     console.error("Proxy error:", err);
     res.status(500).send("Proxy error");
