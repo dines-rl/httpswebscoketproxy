@@ -15,7 +15,7 @@ app.use("/:tunnelToken/proxy/", (req, res, next) => {
     changeOrigin: true,
     pathRewrite: {
       // Rewrite the path to remove '/:tunnelToken/proxy/' and keep everything after
-      "^/api/[^/]+/proxy/(.*)$": "/$1",
+      "^/[^/]+/proxy/(.*)$": "/$1",
     },
     //selfHandleResponse: true, // necessary to modify the response
 
@@ -31,6 +31,10 @@ app.use("/:tunnelToken/proxy/", (req, res, next) => {
 // This will handle HTTP GET requests to any path
 app.get("/", (req, res) => {
   res.send("This is a proxy server. Does not serve content directly.");
+});
+// This will handle HTTP GET requests to any path
+app.get("/health", (req, res) => {
+  res.send("Super healthy");
 });
 
 // Start the server
