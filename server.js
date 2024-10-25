@@ -38,7 +38,7 @@ app.use("/:tunnelToken/proxy", apiProxy);
 app.use("/:tunnelToken/proxy/*", apiProxy);
 
 // This will handle HTTP GET requests to any path
-app.get("/*", (req, res) => {
+app.use("/", (req, res) => {
   const apiProxy = createProxyMiddleware({
     target:
       "https://l7srq4mnqdnc-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
@@ -50,6 +50,7 @@ app.get("/*", (req, res) => {
       res.status(500).send("Proxy error");
     },
   });
+  apiProxy(req, res);
 });
 
 // This will handle HTTP GET requests to any path
