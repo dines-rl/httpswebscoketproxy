@@ -4,21 +4,32 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Function to extract the tunnelToken from the request URL
+function extractToken(req) {
+  // Assuming URL pattern is "/:tunnelToken/proxy/*"
+  const match = req.url.match(/\/([^\/]+)\/proxy/);
+  return match ? match[1] : null;
+}
 // Create a single instance of createProxyMiddleware
 const apiProxy = createProxyMiddleware({
+  target: "https://example.com",
   changeOrigin: true,
   pathRewrite: {
     // Rewrite the path to remove '/:tunnelToken/proxy/' and keep everything after
     "^/[^/]+/proxy/(.*)$": "/$1",
   },
   ws: true, // Enable WebSocket proxying
+  toProxy: true, // Enable the proxy to be used in a reverse proxy
   onError: (err, req, res) => {
     console.error("Proxy error:", err);
     res.status(500).send("Proxy error");
   },
   router: (req) => {
-    const { tunnelToken } = req.params;
-    // Construct the target URL using the tunnelToken
+    const tunnelToken = extractToken(req);
+    if (!tunnelToken) {
+      console.error("Failed to extract tunnelToken from URL:", req.url);
+      return null;
+    }
     return `https://${tunnelToken}.tunnel.runloop.ai`;
   },
 });
