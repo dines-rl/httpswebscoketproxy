@@ -10,6 +10,9 @@ const proxy = httpProxy.createProxyServer({
     "https://x7xejlw7ppim-dc118956-dcbb-4fae-b4ef-0a8390fe1256.tunnel.runloop.ai",
   changeOrigin: true,
   ws: true, // Enable WebSocket proxying
+  //forward: true,
+  //prependPath: true,
+  //toProxy: true,
 });
 
 proxy.on("error", (err, req, res) => {
